@@ -23,7 +23,6 @@ export function GeneralInfoCard(){
 export function EducationExpCard(){
     return (
         <div className='ee-container'>
-           <span className='card-title'>Educational Experience</span>
            <div>
             <span>school name:</span>
             <input type="text" name="name" id="name" placeholder='school name'/>
