@@ -94,7 +94,7 @@
 
 .pe-container{
     width: 723px;
-    height: 503px;
+    min-height: 503px;
     border-radius: 16px;
     border: 1px solid #E5E7EB;
     background: rgba(250, 250, 250, 0.85);

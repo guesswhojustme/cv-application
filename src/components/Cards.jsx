@@ -48,7 +48,6 @@ export function EducationExpCard(){
 export function PracticalExpCard(){
     return (
         <div className='pe-container'>
-            <span className='card-title'>Practical Experience</span>
             <div className='first-part'>
                 <div>
                     <span>company name:</span>

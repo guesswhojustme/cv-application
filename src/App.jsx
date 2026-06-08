@@ -4,19 +4,27 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import { GeneralInfoCard, EducationExpCard, PracticalExpCard } from './components/Cards.jsx';
-import { EducationExpCardContainer } from './components/Pages.jsx'
+import { EducationExpCardContainer, PracticalExpCardContainer } from './components/Pages.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-     <>
-      <GeneralInfoCard/>
-      <EducationExpCardContainer>
-        <EducationExpCard/>
-        <EducationExpCard/>
-      </EducationExpCardContainer>
-     </>
+     <div className='container'>
+      <div className="gi-ee-container">
+        <GeneralInfoCard/>
+        <EducationExpCardContainer>
+          <EducationExpCard/>
+          <EducationExpCard/>
+        </EducationExpCardContainer>
+      </div>
+      <div className='second-part'>
+        <PracticalExpCardContainer>
+           <PracticalExpCard/>
+           <PracticalExpCard/>
+        </PracticalExpCardContainer>
+      </div>
+     </div>
   )
 }
 
