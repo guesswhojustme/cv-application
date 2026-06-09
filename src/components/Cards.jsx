@@ -41,7 +41,7 @@ export function GeneralInfoCard(){
     )
 }
 
-export function EducationExpCard(){
+export function EducationExpCard({children}){
     console.log('Education Experience Card rerenderd');
     const [schoolVal, setSchoolVal] = useState('');
     const [titleVal, setTitleVal] = useState('');
@@ -83,6 +83,7 @@ export function EducationExpCard(){
                 <span>date end:</span>
                 <input type="text" placeholder='mm/yy' onChange={handleDateStartChange}/>
             </div>
+            {children}
            </div>
         </div>
     )
