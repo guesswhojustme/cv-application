@@ -15,12 +15,10 @@ function App() {
         <GeneralInfoCard/>
         <EducationExpCardContainer>
           <EducationExpCard/>
-          <EducationExpCard/>
         </EducationExpCardContainer>
       </div>
       <div className='second-part'>
         <PracticalExpCardContainer>
-           <PracticalExpCard/>
            <PracticalExpCard/>
         </PracticalExpCardContainer>
       </div>
