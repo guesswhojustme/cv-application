@@ -65,3 +65,24 @@
 .remove-spn:hover{
     cursor: pointer;
 }
+
+.remove-spn2{
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    text-decoration: underline;
+}
+
+.remove-spn2:hover{
+    cursor: pointer;
+}
+
+.container{
+    display: flex;
+}
+
+.gi-ee-container{
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}

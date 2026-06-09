@@ -23,13 +23,18 @@
     box-sizing: border-box;
 }
 
-.container{
+.app-container{
     display: flex;
-    
+    align-items: center;
 }
 
-.gi-ee-container{
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
+.submit-spn{
+    margin-left: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.submit-spn:hover{
+    cursor: pointer;
 }

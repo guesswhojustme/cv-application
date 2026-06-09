@@ -1,14 +1,11 @@
 import './pages-style.css';
-import { EducationExpCard, PracticalExpCard } from './Cards.jsx';
+import { GeneralInfoCard,EducationExpCard, PracticalExpCard } from './Cards.jsx';
 import { useState } from 'react';
 
 export function EducationExpCardContainer({children}){
     const [id, setId] = useState(0)
     const [components, setComponents] = useState([])
-    function handleRemoveClick(removeId){
-      // components.filter(component => )
-    }
-    
+  
     function createComponent(id, remove){
       const obj = {
         id,
@@ -16,6 +13,7 @@ export function EducationExpCardContainer({children}){
       }
       return obj
     }
+
     function handleRemoveClick(componentId){
       const newComponent = () => {
         const newArr = []
@@ -55,11 +53,34 @@ export function EducationExpCardContainer({children}){
 export function PracticalExpCardContainer({children}){
     const [id, setId] = useState(0)
     const [components, setComponents] = useState([])
+
+    function createComponent(id, remove){
+      const obj = {
+        id,
+        component: <PracticalExpCard key={id}>{remove}</PracticalExpCard>
+      }
+      return obj
+    }
+
+    function handleRemoveClick(componentId){
+      const newComponent = () => {
+        const newArr = []
+        components.forEach(items => {
+          if(items.id !== componentId){
+            newArr.push(items);
+          }
+        })
+        return newArr;
+      }
+      
+      setComponents(newComponent);
+    }
     function handleClick(){
-        setComponents([...components, <PracticalExpCard key={id}/>]);
+        const remove = <span className='remove-spn2' onClick={() => handleRemoveClick(id)}>remove</span>;
+        setComponents([...components, createComponent(id, remove)]);
         console.log(components);
         setId(id + 1);
-    }
+    } 
     return (
         <div className='pe-comp-container'>
             <div className='pe-header'>
@@ -68,9 +89,27 @@ export function PracticalExpCardContainer({children}){
             </div>
             <div className='pe-component-container'>
               {children}
-              {components.map(component => component)};
+              {components.map(items => items.component)};
             </div>
         </div>
     )
 }
 
+
+export function FillUpPage(){
+  return (
+       <div className='container'>
+        <div className="gi-ee-container">
+          <GeneralInfoCard/>
+          <EducationExpCardContainer>
+            <EducationExpCard/>
+          </EducationExpCardContainer>
+        </div>
+        <div className='second-part'>
+          <PracticalExpCardContainer>
+             <PracticalExpCard/>
+          </PracticalExpCardContainer>
+        </div>
+       </div>
+    )
+  }

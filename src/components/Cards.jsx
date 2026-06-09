@@ -89,7 +89,7 @@ export function EducationExpCard({children}){
     )
 }
 
-export function PracticalExpCard(){
+export function PracticalExpCard({children}){
     const [companyVal, setCompanyVal] = useState('');
     const [positionVal, setPositionVal] = useState('');
     const [workRespVal, setWorkRespVal] = useState('');
@@ -142,6 +142,7 @@ export function PracticalExpCard(){
                     <input type="text" placeholder='mm/yy' onChange={handleDateEndChangePE}/>
                 </div>
             </div>
+            {children}
         </div>
     )
 }
