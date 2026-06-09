@@ -2,7 +2,7 @@ import './pages-style.css';
 import { GeneralInfoCard,EducationExpCard, PracticalExpCard } from './Cards.jsx';
 import { useState } from 'react';
 
-export function EducationExpCardContainer({children}){
+export function EducationExpCardContainer({props, children}){
     const [id, setId] = useState(0)
     const [components, setComponents] = useState([])
   
@@ -96,18 +96,18 @@ export function PracticalExpCardContainer({children}){
 }
 
 
-export function FillUpPage(){
+export function FillUpPage({props}){
   return (
        <div className='container'>
         <div className="gi-ee-container">
-          <GeneralInfoCard/>
-          <EducationExpCardContainer>
-            <EducationExpCard/>
+          <GeneralInfoCard handleGenInfoChange={props.handleGenInfoChange} genInfos={props.generalInfo}/>
+          <EducationExpCardContainer props={props}>
+            <EducationExpCard handleEducExpChange={props.handleEducExpChange} educExp={props.educExp}/>
           </EducationExpCardContainer>
         </div>
         <div className='second-part'>
           <PracticalExpCardContainer>
-             <PracticalExpCard/>
+             <PracticalExpCard handlePracExpChange={props.handlePracExpChange} pracExp={props.pracExp}/>
           </PracticalExpCardContainer>
         </div>
        </div>

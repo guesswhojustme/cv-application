@@ -1,87 +1,48 @@
 import { use, useState } from 'react';
 import './card.css';
 
-export function GeneralInfoCard(){
+export function GeneralInfoCard({handleGenInfoChange, genInfos}){
     console.log('General Info Card rerendered');
-    const [nameValue, setNameValue] = useState('');
-    const [phoneValue, setPhoneValue] = useState('');
-    const [emailVal, setEmailValue] = useState('');
-
-    function handleNameChange(e){
-        console.log(e.target.value);
-        setNameValue(e.target.value)
-    }
-
-    function handlePhoneChange(e){
-         console.log(e.target.value);
-        setPhoneValue(e.target.value)
-    }
-
-    function handleEmailChange(e){
-         console.log(e.target.value);
-        setEmailValue(e.target.value)
-    }
 
     return (
         <div className='gi-container'>
            <span className='card-title'>General Information</span>
            <div className='name-wrapper'>
             <span>name:</span>
-            <input type="text" name="name" id="name" placeholder='full name' onChange={handleNameChange}/>
+            <input type="text" name="name" id="name" placeholder='full name' onChange={handleGenInfoChange} value={genInfos.name}/>
            </div>
            <div className='phone-wrapper'>
             <span>phone #:</span>
-            <input type="text" name="phone" id="phone" placeholder='0987654321' onChange={handlePhoneChange}/>
+            <input type="text" name="phone" id="phone" placeholder='0987654321' onChange={handleGenInfoChange} value={genInfos.phone}/>
            </div>
            <div className='email-wrapper'>
             <span>email:</span>
-             <input type="email" name="email" id="email" placeholder='whateverisyour@email.com' onChange={handleEmailChange}/>
+             <input type="email" name="email" id="email" placeholder='whateverisyour@email.com' onChange={handleGenInfoChange} value={genInfos.email}/>
            </div>
         </div>
     )
 }
 
-export function EducationExpCard({children}){
+export function EducationExpCard({handleEducExpChange, educExp, children}){
     console.log('Education Experience Card rerenderd');
-    const [schoolVal, setSchoolVal] = useState('');
-    const [titleVal, setTitleVal] = useState('');
-    const [dateStartVal, setDateStartVal] = useState('');
-    const [dateEndVal, setDateEndVal] = useState('');
-
-    function handleSchoolChange(e){
-        console.log(e.target.value);
-        setSchoolVal(e.target.value)
-    }
-    function handleTitleChange(e){
-        console.log(e.target.value);
-        setTitleVal(e.target.value)
-    }
-    function handleDateStartChange(e){
-        console.log(e.target.value);
-        setDateStartVal(e.target.value)
-    }
-    function handleDateEndChange(e){
-        console.log(e.target.value);
-        setDateEndVal(e.target.value)
-    }
     return (
         <div className='ee-container'>
            <div>
             <span>school name:</span>
-            <input type="text" name="name" id="name" placeholder='school name' onChange={handleSchoolChange}/>
+            <input type="text" name="schoolName" id="name" placeholder='school name' onChange={handleEducExpChange} value={educExp.schoolName}/>
            </div>
            <div>
             <span>title of study:</span>
-            <input type="text" name="phone" id="phone" placeholder='0987654321' onChange={handleTitleChange}/>
+            <input type="text" name="tof" id="phone" placeholder='0987654321' onChange={handleEducExpChange} value={educExp.tof}/>
            </div>
            <div className='date-wrapper'>
             <div>
                 <span>date start:</span>
-                <input type="text" placeholder='mm/yy'onChange={handleDateStartChange}/>
+                <input type="text" name='dateStart' placeholder='mm/yy' onChange={handleEducExpChange} value={educExp.dateStart}/>
             </div>
             <div>
                 <span>date end:</span>
-                <input type="text" placeholder='mm/yy' onChange={handleDateStartChange}/>
+                <input type="text" name='dateEnd' placeholder='mm/yy' onChange={handleEducExpChange} value={educExp.dateEnd}/>
             </div>
             {children}
            </div>
@@ -89,57 +50,33 @@ export function EducationExpCard({children}){
     )
 }
 
-export function PracticalExpCard({children}){
-    const [companyVal, setCompanyVal] = useState('');
-    const [positionVal, setPositionVal] = useState('');
-    const [workRespVal, setWorkRespVal] = useState('');
-    const [dateStartValPE, setDateStartValPE] = useState('');
-    const [dateEndValPE, setDateEndValPE] = useState('');
+export function PracticalExpCard({handlePracExpChange, pracExp, children}){
+    console.log('Practical Exp Card rerendered');
 
-    function handleCompanyChange(e){
-        console.log(e.target.value);
-        setCompanyVal(e.target.value);
-    }
-    function handlePositionChange(e){
-        console.log(e.target.value);
-        setPositionVal(e.target.value);
-    }
-    function handleWorkChange(e){
-        console.log(e.target.value);
-        setWorkRespVal(e.target.value);
-    }
-    function handleDateStartChangePE(e){
-        console.log(e.target.value);
-        setDateStartValPE(e.target.value)
-    }
-    function handleDateEndChangePE(e){
-        console.log(e.target.value);
-        setDateEndValPE(e.target.value);
-    }
     return (
         <div className='pe-container'>
             <div className='first-part'>
                 <div>
                     <span>company name:</span>
-                    <input type="text" name="company-name" id="company-name" placeholder='company name' onChange={handleCompanyChange}/>
+                    <input type="text" name="companyName" id="company-name" placeholder='company name' onChange={handlePracExpChange} value={pracExp.companyName}/>
                 </div>
                 <div>
                     <span>position title:</span>
-                    <input type="text" name="position-title" id="position-title" placeholder='whateveritis' onChange={handlePositionChange}/>
+                    <input type="text" name="positionTitle" id="position-title" placeholder='whateveritis' onChange={handlePracExpChange} value={pracExp.positionTitle}/>
                 </div>
             </div>
             <div className='second-part'>
                     <span>work responsibility: </span>
-                    <textarea placeholder='what did you do during your work?' onChange={handleWorkChange}></textarea>
+                    <textarea name='workResp' placeholder='what did you do during your work?' onChange={handlePracExpChange} value={pracExp.workResp}></textarea>
             </div>
             <div className='third-part'>
                 <div>
                     <span>date start:</span>
-                    <input type="text" placeholder='mm/yy' onChange={handleDateStartChangePE}/>
+                    <input type="text" placeholder='mm/yy' name='dateStart' onChange={handlePracExpChange} value={pracExp.dateStart}/>
                 </div>
                 <div>
                     <span>date end:</span>
-                    <input type="text" placeholder='mm/yy' onChange={handleDateEndChangePE}/>
+                    <input type="text" placeholder='mm/yy' name='dateEnd' onChange={handlePracExpChange} value={pracExp.dateEnd}/>
                 </div>
             </div>
             {children}
