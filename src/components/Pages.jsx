@@ -5,23 +5,23 @@ import { useState } from 'react';
 export function EducationExpCardContainer({props, children}){
     const [id, setId] = useState(0)
     const [components, setComponents] = useState([])
-  
-    function createComponent(id, remove){
+    const [handeRemoveId, setHandleRemoveId] = useState()
+    
+    function createComponent(id){
       const obj = {
         id,
-        component: <EducationExpCard key={id}>{remove}</EducationExpCard>
+        component: <EducationExpCard key={id}></EducationExpCard>
       }
       return obj
     }
 
-    function handleRemoveClick(componentId){
+    function handleRemoveClick(){
+      console.log("handleRemoveClick Func Triggered");
       const newComponent = () => {
         const newArr = []
-        components.forEach(items => {
-          if(items.id !== componentId){
-            newArr.push(items);
-          }
-        })
+        for(let i = 0; i < components.length - 1; i++){
+          newArr.push(components[i])
+        }
         return newArr;
       }
       
@@ -29,9 +29,8 @@ export function EducationExpCardContainer({props, children}){
     }
 
     function handleClick(){
-        const remove = <span className='remove-spn' onClick={() => handleRemoveClick(id)}>remove</span>;
         console.log(components[0]);
-        setComponents([...components, createComponent(id, remove)]);
+        setComponents([...components, createComponent(id)]);
         console.log(components);
         setId(id + 1);
     }
@@ -39,11 +38,14 @@ export function EducationExpCardContainer({props, children}){
         <div className='ee-comp-container'>
             <div className='ee-header'>
               <span>Educational Experience</span>
-              <span id='add-ee' onClick={handleClick}>+</span>
+              <div>
+                {components.length > 0 ? <span className='remove-spnEE' onClick={handleRemoveClick}>{`<--`}</span> : null}
+                <span id='add-ee' onClick={handleClick}>+</span>
+              </div>
             </div>
             <div className='ee-component-container'>
               {children}
-              {components.map(items => items.component)};
+              {components.map(items => items.component)}
             </div>
         </div>
     )
@@ -54,10 +56,10 @@ export function PracticalExpCardContainer({children}){
     const [id, setId] = useState(0)
     const [components, setComponents] = useState([])
 
-    function createComponent(id, remove){
+    function createComponent(id){
       const obj = {
         id,
-        component: <PracticalExpCard key={id}>{remove}</PracticalExpCard>
+        component: <PracticalExpCard key={id}></PracticalExpCard>
       }
       return obj
     }
@@ -65,19 +67,16 @@ export function PracticalExpCardContainer({children}){
     function handleRemoveClick(componentId){
       const newComponent = () => {
         const newArr = []
-        components.forEach(items => {
-          if(items.id !== componentId){
-            newArr.push(items);
-          }
-        })
+        for(let i = 0; i < components.length - 1; i++){
+          newArr.push(components[i])
+        }
         return newArr;
       }
       
       setComponents(newComponent);
     }
     function handleClick(){
-        const remove = <span className='remove-spn2' onClick={() => handleRemoveClick(id)}>remove</span>;
-        setComponents([...components, createComponent(id, remove)]);
+        setComponents([...components, createComponent(id)]);
         console.log(components);
         setId(id + 1);
     } 
@@ -85,11 +84,14 @@ export function PracticalExpCardContainer({children}){
         <div className='pe-comp-container'>
             <div className='pe-header'>
               <span>Practical Experience</span>
-              <span id='add-pe' onClick={handleClick}>+</span>
+              <div>
+                {components.length > 0 ? <span className='remove-spnPE' onClick={handleRemoveClick}>{`<--`}</span> : null}
+                <span id='add-pe' onClick={handleClick}>+</span>
+              </div>
             </div>
             <div className='pe-component-container'>
               {children}
-              {components.map(items => items.component)};
+              {components.map(items => items.component)}
             </div>
         </div>
     )
@@ -106,7 +108,7 @@ export function FillUpPage({props}){
           </EducationExpCardContainer>
         </div>
         <div className='second-part'>
-          <PracticalExpCardContainer>
+          <PracticalExpCardContainer props={props}>
              <PracticalExpCard handlePracExpChange={props.handlePracExpChange} pracExp={props.pracExp}/>
           </PracticalExpCardContainer>
         </div>

@@ -23,34 +23,33 @@ export function GeneralInfoCard({handleGenInfoChange, genInfos}){
     )
 }
 
-export function EducationExpCard({handleEducExpChange, educExp, children}){
+export function EducationExpCard({handleEducExpChange, educExp}){
     console.log('Education Experience Card rerenderd');
     return (
         <div className='ee-container'>
            <div>
             <span>school name:</span>
-            <input type="text" name="schoolName" id="name" placeholder='school name' onChange={handleEducExpChange} value={educExp.schoolName}/>
+            <input type="text" name="schoolName" id="name" placeholder='school name'/>
            </div>
            <div>
             <span>title of study:</span>
-            <input type="text" name="tof" id="phone" placeholder='0987654321' onChange={handleEducExpChange} value={educExp.tof}/>
+            <input type="text" name="tof" id="phone" placeholder='0987654321'/>
            </div>
            <div className='date-wrapper'>
             <div>
                 <span>date start:</span>
-                <input type="text" name='dateStart' placeholder='mm/yy' onChange={handleEducExpChange} value={educExp.dateStart}/>
+                <input type="text" name='dateStart' placeholder='mm/yy'/>
             </div>
             <div>
                 <span>date end:</span>
-                <input type="text" name='dateEnd' placeholder='mm/yy' onChange={handleEducExpChange} value={educExp.dateEnd}/>
+                <input type="text" name='dateEnd' placeholder='mm/yy'/>
             </div>
-            {children}
            </div>
         </div>
     )
 }
 
-export function PracticalExpCard({handlePracExpChange, pracExp, children}){
+export function PracticalExpCard({handlePracExpChange, pracExp}){
     console.log('Practical Exp Card rerendered');
 
     return (
@@ -58,28 +57,27 @@ export function PracticalExpCard({handlePracExpChange, pracExp, children}){
             <div className='first-part'>
                 <div>
                     <span>company name:</span>
-                    <input type="text" name="companyName" id="company-name" placeholder='company name' onChange={handlePracExpChange} value={pracExp.companyName}/>
+                    <input type="text" name="companyName" id="company-name" placeholder='company name'/>
                 </div>
                 <div>
                     <span>position title:</span>
-                    <input type="text" name="positionTitle" id="position-title" placeholder='whateveritis' onChange={handlePracExpChange} value={pracExp.positionTitle}/>
+                    <input type="text" name="positionTitle" id="position-title" placeholder='whateveritis'/>
                 </div>
             </div>
             <div className='second-part'>
                     <span>work responsibility: </span>
-                    <textarea name='workResp' placeholder='what did you do during your work?' onChange={handlePracExpChange} value={pracExp.workResp}></textarea>
+                    <textarea name='workResp' placeholder='what did you do during your work?'></textarea>
             </div>
             <div className='third-part'>
                 <div>
                     <span>date start:</span>
-                    <input type="text" placeholder='mm/yy' name='dateStart' onChange={handlePracExpChange} value={pracExp.dateStart}/>
+                    <input type="text" placeholder='mm/yy' name='dateStart'/>
                 </div>
                 <div>
                     <span>date end:</span>
-                    <input type="text" placeholder='mm/yy' name='dateEnd' onChange={handlePracExpChange} value={pracExp.dateEnd}/>
+                    <input type="text" placeholder='mm/yy' name='dateEnd'/>
                 </div>
             </div>
-            {children}
         </div>
     )
 }

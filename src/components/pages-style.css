@@ -17,6 +17,12 @@
     margin-top: 15px;
 }
 
+.ee-header > div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 #add-ee{
     font-size: 32px;
 }
@@ -45,6 +51,12 @@
     width: 753px;
     position: absolute;
     top: 10px;
+}
+
+.pe-header > div{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 #add-pe{
@@ -85,4 +97,20 @@
     display: flex;
     flex-direction: column;
     margin-right: 10px;
+}
+
+.remove-spnEE{
+    font-weight: bold; 
+}
+
+.remove-spnEE:hover{
+    cursor: pointer; 
+}
+
+.remove-spnPE{
+    font-weight: bold; 
+}
+
+.remove-spnPE:hover{
+    cursor: pointer; 
 }
