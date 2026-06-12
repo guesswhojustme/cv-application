@@ -3,8 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
-import { GeneralInfoCard, EducationExpCard, PracticalExpCard } from './components/Cards.jsx';
-import { EducationExpCardContainer, PracticalExpCardContainer, FillUpPage } from './components/Pages.jsx'
+import { FillUpPage, DisplayDataPage } from './components/Pages.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -58,7 +57,7 @@ function App() {
     setCount(count + 1)
   }
   return (
-      <div>
+      <div className='pages-container'>
         {count % 2 === 0 ? 
         <div className="app-container">
           <FillUpPage props={{handleGenInfoChange, handleEducExpChange, handlePracExpChange, generalInfo, educExp, setEducExp, pracExp}} />
@@ -66,6 +65,7 @@ function App() {
         </div> :
           <div className="app-container">
           <span className='submit-spn' onClick={handleSubmitClick}>{`<-- back`}</span>
+          <DisplayDataPage props={{generalInfo, educExp, pracExp}}/>
         </div>}
       </div>
   )
