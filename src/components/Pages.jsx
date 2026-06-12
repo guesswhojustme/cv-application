@@ -23,7 +23,6 @@ export function EducationExpCardContainer({props}){
     )
 }
 
-
 export function PracticalExpCardContainer({props}){
     return (
         <div className='pe-comp-container'>

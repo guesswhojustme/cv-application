@@ -11,9 +11,8 @@ function App() {
   const [generalInfo, setGeneralInfo] = useState({name: '', phone: '', email: ''});
   const [educExp, setEducExp] = useState([{id: 0, schoolName: '', tof: '', dateStart: '', dateEnd: ''}])
   const [pracExp, setPracExp] = useState([{id: 1, companyName: '', positionTitle: '', workResp: '', dateStart: '', dateEnd: ''}])
-
-  const currentEducExpState = educExp;
-
+  console.log('refreshed the App component');
+  
     function handleGenInfoChange(e){
         const {name, value} = e.target;
         // console.log(`name input: ${generalInfo.name}`);
@@ -82,7 +81,7 @@ function App() {
     function handlePracExpChange(e){
         const {className, name, value} = e.target;
         console.log(pracExp);
-        
+
         function change(){
           const newData = [];
           for(let i = 0; i < pracExp.length; i++){
