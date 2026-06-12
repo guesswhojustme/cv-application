@@ -9,8 +9,10 @@ import { EducationExpCardContainer, PracticalExpCardContainer, FillUpPage } from
 function App() {
   const [count, setCount] = useState(0)
   const [generalInfo, setGeneralInfo] = useState({name: '', phone: '', email: ''});
-  const [educExp, setEducExp] = useState({schoolName: '', tof: '', dateStart: '', dateEnd: ''})
+  const [educExp, setEducExp] = useState([{id: 0, schoolName: '', tof: '', dateStart: '', dateEnd: ''}])
   const [pracExp, setPracExp] = useState({companyName: '', positionTitle: '', workResp: '', dateStart: '', dateEnd: ''})
+
+  const currentEducExpState = educExp;
 
     function handleGenInfoChange(e){
         const {name, value} = e.target;
@@ -24,16 +26,23 @@ function App() {
     }
 
     function handleEducExpChange(e){
-        const {name, value} = e.target;
-        // console.log(`school input: ${educExp.schoolName}`);
-        // console.log(`tof input: ${educExp.tof}`);
-        // console.log(`date start input: ${educExp.dateStart}`);
-        // console.log(`date end input: ${educExp.dateEnd}`);
-        
-        setEducExp(prev => ({
-            ...prev,
-            [name]: value
-        }))
+        const {className, name, value} = e.target;
+        console.log(educExp);
+
+        function change(){
+          const newData = [];
+          for(let i = 0; i < educExp.length; i++){
+            if(educExp[i].id === parseInt(className)){
+              educExp[i][name] = value
+              newData.push(educExp[i])
+            }else{
+              newData.push(educExp[i])
+            }
+          }
+          return newData;
+        }
+
+        setEducExp(change);
     }
 
     function handlePracExpChange(e){
@@ -52,7 +61,7 @@ function App() {
       <div>
         {count % 2 === 0 ? 
         <div className="app-container">
-          <FillUpPage props={{handleGenInfoChange, handleEducExpChange, handlePracExpChange, generalInfo, educExp, pracExp}} />
+          <FillUpPage props={{handleGenInfoChange, handleEducExpChange, handlePracExpChange, generalInfo, educExp, setEducExp, pracExp}} />
           <span className='submit-spn' onClick={handleSubmitClick}>{`submit -->`}</span>
         </div> :
           <div className="app-container">

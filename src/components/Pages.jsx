@@ -3,14 +3,18 @@ import { GeneralInfoCard,EducationExpCard, PracticalExpCard } from './Cards.jsx'
 import { useState } from 'react';
 
 export function EducationExpCardContainer({props, children}){
-    const [id, setId] = useState(0)
+    const [id, setId] = useState(2)
     const [components, setComponents] = useState([])
     const [handeRemoveId, setHandleRemoveId] = useState()
     
-    function createComponent(id){
+    function createComponent(id, handler, data){
+      console.log(id);
+      console.log(handler);
+      console.log(data);
+      
       const obj = {
         id,
-        component: <EducationExpCard key={id}></EducationExpCard>
+        component: <EducationExpCard handleEducExpChange={handler} educExp={data} idNum={id} key={id}></EducationExpCard>
       }
       return obj
     }
@@ -25,14 +29,13 @@ export function EducationExpCardContainer({props, children}){
         return newArr;
       }
       
-      setComponents(newComponent);
+      setComponents(newComponent);  
     }
 
     function handleClick(){
-        console.log(components[0]);
-        setComponents([...components, createComponent(id)]);
-        console.log(components);
-        setId(id + 1);
+      props.setEducExp(prev => ([...prev, {id: id, schoolName: '', tof: '', dateStart: '', dateEnd: ''}]))
+      setComponents([...components, createComponent(id, props.handleEducExpChange, props.educExp)]);
+      setId(id + 1);
     }
     return (
         <div className='ee-comp-container'>
@@ -104,7 +107,7 @@ export function FillUpPage({props}){
         <div className="gi-ee-container">
           <GeneralInfoCard handleGenInfoChange={props.handleGenInfoChange} genInfos={props.generalInfo}/>
           <EducationExpCardContainer props={props}>
-            <EducationExpCard handleEducExpChange={props.handleEducExpChange} educExp={props.educExp}/>
+            <EducationExpCard handleEducExpChange={props.handleEducExpChange} educExp={props.educExp} idNum={0}/>
           </EducationExpCardContainer>
         </div>
         <div className='second-part'>

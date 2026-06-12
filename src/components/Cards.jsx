@@ -23,26 +23,32 @@ export function GeneralInfoCard({handleGenInfoChange, genInfos}){
     )
 }
 
-export function EducationExpCard({handleEducExpChange, educExp}){
+export function EducationExpCard({handleEducExpChange, educExp, idNum}){
     console.log('Education Experience Card rerenderd');
+    let index = 0;
+        for(let i = 0; i < educExp.length; i++){
+          if(educExp[i].id === idNum){
+            index = i;
+          }
+        }
     return (
         <div className='ee-container'>
            <div>
             <span>school name:</span>
-            <input type="text" name="schoolName" id="name" placeholder='school name'/>
+            <input className={idNum} type="text" name="schoolName" id="name" placeholder='school name' onChange={handleEducExpChange} value={educExp[index].schoolName}/>
            </div>
            <div>
             <span>title of study:</span>
-            <input type="text" name="tof" id="phone" placeholder='0987654321'/>
+            <input className={idNum} type="text" name="tof" id="phone" placeholder='0987654321' onChange={handleEducExpChange} value={educExp[index].tof}/>
            </div>
            <div className='date-wrapper'>
             <div>
                 <span>date start:</span>
-                <input type="text" name='dateStart' placeholder='mm/yy'/>
+                <input className={idNum} type="text" name='dateStart' placeholder='mm/yy' onChange={handleEducExpChange} value={educExp[index].dateStart}/>
             </div>
             <div>
                 <span>date end:</span>
-                <input type="text" name='dateEnd' placeholder='mm/yy'/>
+                <input className={idNum} type="text" name='dateEnd' placeholder='mm/yy' onChange={handleEducExpChange} value={educExp[index].dateEnd}/>
             </div>
            </div>
         </div>
@@ -51,31 +57,30 @@ export function EducationExpCard({handleEducExpChange, educExp}){
 
 export function PracticalExpCard({handlePracExpChange, pracExp}){
     console.log('Practical Exp Card rerendered');
-
     return (
         <div className='pe-container'>
             <div className='first-part'>
                 <div>
                     <span>company name:</span>
-                    <input type="text" name="companyName" id="company-name" placeholder='company name'/>
+                    <input type="text" name="companyName" id="company-name" placeholder='company name' onChange={handlePracExpChange} value={pracExp.companyName}/>
                 </div>
                 <div>
                     <span>position title:</span>
-                    <input type="text" name="positionTitle" id="position-title" placeholder='whateveritis'/>
+                    <input type="text" name="positionTitle" id="position-title" placeholder='whateveritis' onChange={handlePracExpChange} value={pracExp.positionTitle}/>
                 </div>
             </div>
             <div className='second-part'>
                     <span>work responsibility: </span>
-                    <textarea name='workResp' placeholder='what did you do during your work?'></textarea>
+                    <textarea name='workResp' placeholder='what did you do during your work?' onChange={handlePracExpChange} value={pracExp.workResp}></textarea>
             </div>
             <div className='third-part'>
                 <div>
                     <span>date start:</span>
-                    <input type="text" placeholder='mm/yy' name='dateStart'/>
+                    <input type="text" placeholder='mm/yy' name='dateStart' onChange={handlePracExpChange} value={pracExp.dateStart}/>
                 </div>
                 <div>
                     <span>date end:</span>
-                    <input type="text" placeholder='mm/yy' name='dateEnd'/>
+                    <input type="text" placeholder='mm/yy' name='dateEnd' onChange={handlePracExpChange} value={pracExp.dateEnd}/>
                 </div>
             </div>
         </div>
