@@ -61,6 +61,50 @@ export function FillUpPage({props}){
        </div>
     )
   }
+  
+export function EducationalExpDataContainer({prop}){
+  return (
+    <div className='educ-exp-container'>
+      <div>
+        <span>school</span>
+          <p>{prop.schoolName}</p>
+        </div>
+        <div>
+          <span>title of study</span>
+          <p>{prop.tof}</p>
+        </div>
+        <div>
+          <span>start-end date</span>
+          <p>{prop.dateStart} - {prop.dateEnd}</p>
+        </div>
+    </div>
+  )
+}
+
+export function PracticalExpDataContainer({prop}){
+  return (
+    <div className='prac-exp-container'>
+      <div className="com-pt-date-wrapper">
+        <div>
+          <span>company</span>
+          <p>{prop.companyName}</p>
+        </div>
+        <div>
+          <span>position</span>
+          <p>{prop.positionTitle}</p>
+        </div>
+        <div>
+          <span>start-end date</span>
+          <p>{prop.dateStart} - {prop.dateEnd}</p>
+        </div>
+        </div>
+        <div>
+          <span>work responsibility:</span>
+          <p>{prop.workResp}</p>
+        </div>
+    </div>
+  )
+}
 
 export function DisplayDataPage({props}){
   return (
@@ -88,41 +132,11 @@ export function DisplayDataPage({props}){
         </div>
         <div className='line'></div>
         <h1>Educational Experience</h1>
-        <div className='educ-exp-container'>
-            <div>
-              <span>school</span>
-              <p>{props.educExp[0].schoolName}</p>
-            </div>
-            <div>
-              <span>title of study</span>
-              <p>{props.educExp[0].tof}</p>
-            </div>
-            <div>
-              <span>start-end date</span>
-              <p>{props.educExp[0].dateStart} - {props.educExp[0].dateEnd}</p>
-            </div>
-        </div>
+        {props.educExp.map(items => <EducationalExpDataContainer prop={items}/>)}
         <div className='line'></div>
         <h1>Practical Experience</h1>
         <div className='prac-exp-container'>
-            <div className="com-pt-date-wrapper">
-              <div>
-                <span>company</span>
-                <p>{props.pracExp.companyName}</p>
-              </div>
-              <div>
-                <span>position</span>
-                <p>{props.pracExp.positionTitle}</p>
-              </div>
-              <div>
-                <span>start-end date</span>
-                <p>{props.pracExp.dateStart} - {props.pracExp.dateEnd}</p>
-              </div>
-            </div>
-            <div>
-              <span>work responsibility:</span>
-              <p>{props.pracExp.workResp}</p>
-            </div>
+        {props.pracExp.map(items => <PracticalExpDataContainer prop={items}/>)}
         </div>
      </div>
   )

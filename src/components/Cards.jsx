@@ -33,7 +33,7 @@ export function EducationExpCard({handleEducExpChange, educExp, idNum}){
            </div>
            <div>
             <span>title of study:</span>
-            <input className={idNum} type="text" name="tof" id="phone" placeholder='0987654321' onChange={handleEducExpChange} value={educExp.tof}/>
+            <input className={idNum} type="text" name="tof" id="tof" placeholder='what did you study?' onChange={handleEducExpChange} value={educExp.tof}/>
            </div>
            <div className='date-wrapper'>
             <div>
