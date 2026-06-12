@@ -134,13 +134,13 @@ export function DisplayDataPage({props}){
             <p>
               {props.generalInfo.email}
             </p>
-            <span>contact no.</span>
+            <span>email</span>
           </div>
           <div>
             <p>
               {props.generalInfo.phone}
             </p>
-            <span>email</span>
+            <span>contact no.</span>
           </div>
         </div>
         <div className='line'></div>
