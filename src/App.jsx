@@ -6,10 +6,11 @@ import './App.css'
 import { FillUpPage, DisplayDataPage } from './components/Pages.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [id, setId] = useState(2);
   const [generalInfo, setGeneralInfo] = useState({name: '', phone: '', email: ''});
   const [educExp, setEducExp] = useState([{id: 0, schoolName: '', tof: '', dateStart: '', dateEnd: ''}])
-  const [pracExp, setPracExp] = useState({companyName: '', positionTitle: '', workResp: '', dateStart: '', dateEnd: ''})
+  const [pracExp, setPracExp] = useState([{id: 1, companyName: '', positionTitle: '', workResp: '', dateStart: '', dateEnd: ''}])
 
   const currentEducExpState = educExp;
 
@@ -22,6 +23,40 @@ function App() {
             ...prev,
             [name]: value
         }))
+    }
+
+    function addEducExp(){
+      setEducExp(prev => ([...prev, {id: id, schoolName: '', tof: '', dateStart: '', dateEnd: ''}]))
+    }
+
+    function addPracExp(){
+      setPracExp(prev => ([...prev, {id: id, companyName: '', positionTitle: '', workResp: '', dateStart: '', dateEnd: ''}]))
+    }
+
+    function undoAddedEducExp(){
+      console.log("undoAddedExp Func Triggered");
+      const newComponent = () => {
+        const newArr = []
+        for(let i = 0; i < educExp.length - 1; i++){
+          newArr.push(educExp[i])
+        }
+        return newArr;
+      }
+      
+      setEducExp(newComponent);  
+    }
+
+    function undoAddedPracExp(){
+      console.log("undoAddedExp Func Triggered");
+      const newComponent = () => {
+        const newArr = []
+        for(let i = 0; i < pracExp.length - 1; i++){
+          newArr.push(pracExp[i])
+        }
+        return newArr;
+      }
+      
+      setPracExp(newComponent);  
     }
 
     function handleEducExpChange(e){
@@ -45,12 +80,23 @@ function App() {
     }
 
     function handlePracExpChange(e){
-        const {name, value} = e.target;
+        const {className, name, value} = e.target;
+        console.log(pracExp);
+        
+        function change(){
+          const newData = [];
+          for(let i = 0; i < pracExp.length; i++){
+            if(pracExp[i].id === parseInt(className)){
+              pracExp[i][name] = value
+              newData.push(pracExp[i])
+            }else{
+              newData.push(pracExp[i])
+            }
+          }
+          return newData;
+        }
 
-        setPracExp(prev => ({
-            ...prev,
-            [name]: value
-        }))
+        setPracExp(change);
     }
   function handleSubmitClick(){
     console.log(count);
@@ -60,7 +106,15 @@ function App() {
       <div className='pages-container'>
         {count % 2 === 0 ? 
         <div className="app-container">
-          <FillUpPage props={{handleGenInfoChange, handleEducExpChange, handlePracExpChange, generalInfo, educExp, setEducExp, pracExp}} />
+          <FillUpPage props={{
+            handleGenInfoChange, 
+            handleEducExpChange, 
+            handlePracExpChange, 
+            generalInfo, educExp, 
+            addEducExp, pracExp,
+            undoAddedEducExp,
+            addPracExp, undoAddedPracExp
+            }} />
           <span className='submit-spn' onClick={handleSubmitClick}>{`submit -->`}</span>
         </div> :
           <div className="app-container">
